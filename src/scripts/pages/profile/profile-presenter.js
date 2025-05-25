@@ -51,12 +51,16 @@ export default class ProfilePresenter {
   }
 
   logout() {
-    try {
-      this.#userModel.getLogout();
-      this.#view.redirectToLogin();
-    } catch (error) {
-      console.error("Logout failed:", error);
-      this.#view.showError("Failed to logout");
+    const isConfirmed = window.confirm("Are you sure want to logout?");
+
+    if (isConfirmed) {
+      try {
+        this.#userModel.getLogout();
+        alert("Logout Success!");
+        this.#view.redirectToLogin();
+      } catch (error) {
+        alert("Failed to logout profile " + error.message);
+      }
     }
   }
 

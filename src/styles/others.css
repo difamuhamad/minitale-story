@@ -247,3 +247,37 @@
     flex-direction: column;
   }
 }
+
+@media (max-width: 768px) {
+  .not-found-content {
+    padding: 1.5rem;
+  }
+
+  .not-found-title {
+    font-size: 1.75rem;
+  }
+
+  .not-found-image img {
+    width: 200px;
+  }
+}
+
+@media screen and (width > 1000px) {
+  .drawer-button {
+    display: none;
+  }
+}
+
+.sidebar-button {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar-button {
+    display: block;
+  }
+
+  .navigation-drawer.open {
+    display: block;
+  }
+}

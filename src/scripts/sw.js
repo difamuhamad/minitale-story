@@ -37,26 +37,12 @@ registerRoute(
 );
 
 registerRoute(
-  ({ url }) => {
-    return url.origin === "https://ui-avatars.com";
-  },
-  new CacheFirst({
-    cacheName: "avatars-api",
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-    ],
-  })
-);
-
-registerRoute(
   ({ request, url }) => {
     const baseUrl = new URL(BASE_URL);
     return baseUrl.origin === url.origin && request.destination !== "image";
   },
   new NetworkFirst({
-    cacheName: "citycare-api",
+    cacheName: "void-story-api",
   })
 );
 
@@ -66,7 +52,7 @@ registerRoute(
     return baseUrl.origin === url.origin && request.destination === "image";
   },
   new StaleWhileRevalidate({
-    cacheName: "citycare-api-images",
+    cacheName: "void-story-api-images",
   })
 );
 
@@ -76,6 +62,23 @@ registerRoute(
   },
   new CacheFirst({
     cacheName: "maptiler-api",
+  })
+);
+
+registerRoute(
+  ({ url }) => {
+    return (
+      url.href ===
+      "https://preview.redd.it/2yv5x9hto5f61.png?width=341&format=png&auto=webp&s=eccf34f646917d5a7c0196de5c2fc2e7ef3e2427"
+    );
+  },
+  new CacheFirst({
+    cacheName: "leaflet-icons",
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+    ],
   })
 );
 

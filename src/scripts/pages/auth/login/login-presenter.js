@@ -13,7 +13,6 @@ export default class LoginPresenter {
     this.#view.showSubmitLoadingButton();
     try {
       const response = await this.#model.getLogin({ email, password });
-      console.log(response);
 
       if (response.error == true) {
         console.error("getLogin: response:", response);

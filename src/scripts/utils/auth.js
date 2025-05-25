@@ -84,3 +84,26 @@ export function getUserData() {
 export function getLogout() {
   removeAccessTokenAndUserData();
 }
+
+export function unAuthenticatedRoute(page) {
+  const url = getActiveRoute();
+  const isLogin = !!getAccessToken();
+
+  if (unauthenticatedRoutesOnly.includes(url) && isLogin) {
+    location.hash = "/";
+    return null;
+  }
+
+  return page;
+}
+
+export function authenticatedRouteOnly(page) {
+  const isLogin = !!getAccessToken();
+
+  if (!isLogin) {
+    location.hash = "/register";
+    return null;
+  }
+
+  return page;
+}
